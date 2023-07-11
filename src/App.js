@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Header from "./Header";
 import NotesList from "./Noteslist";
+import "./index.css";
 
 const App = () => {
   const [notes, setNotes] = useState([{
@@ -23,12 +24,22 @@ const App = () => {
     doesMatchSearch: true
   }]);
 
-  const [searchText, setSearchText] = useState("Search for me");
+  const [searchText, setSearchText] = useState("");
+
+  const removeNote = (clickedId) => {
+    const filteredNotes = (_, id) => id !== clickedId;
+    const newNotes = notes.filter(filteredNotes);
+    setNotes(newNotes);
+  };
+
+  notes.forEach(note => {
+      note.doesMatchSearch = note.description.includes(searchText) || note.title.includes(searchText);
+  });
 
   return (
     < div className="app" >
-      <Header searchText={searchText} />
-      <NotesList notes={notes} />
+      <Header searchText={searchText} setSearchText={setSearchText}/>
+      <NotesList notes={notes} removeNote={removeNote} searchText={searchText}/>
     </div >
   )
 };

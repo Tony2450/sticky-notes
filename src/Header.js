@@ -1,6 +1,14 @@
 import React from "react";
+import "./index.css";
 
-const Header = (props) => (
+const Header = (props) => {
+  const input = function(e){
+    const searchInput = e.target.value;
+    props.setSearchText(searchInput);
+  }
+
+  
+    return(
     <header>
       <h1 className="app-header__title">Super Sticky Notes</h1>
       <aside className="app-header__controls">
@@ -8,10 +16,12 @@ const Header = (props) => (
         <input
           className="search"
           type="text"
-          placeholder={props.searchText}
+          value={props.searchText}
+          placeholder={"Search for notes here..."}
+          onChange={input}
         />
       </aside>
     </header>
-)
+)}
 
 export default Header;
