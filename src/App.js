@@ -33,7 +33,7 @@ const App = () => {
   };
 
   notes.forEach(note => {
-      note.doesMatchSearch = note.description.includes(searchText.toLowerCase) || note.title.includes(searchText.toLowerCase);
+      note.doesMatchSearch = note.description.includes(searchText.toLowerCase()) || note.title.includes(searchText.toLowerCase());
   });
 
   return (
