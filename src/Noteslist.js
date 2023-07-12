@@ -11,6 +11,7 @@ const NotesList = (props) => {
             removeNote = {props.removeNote}
             key={notes.id}
             id={notes.id}
+            onType={props.onType}
         />
     )
     const filterNotesBySearch = (notes) => notes.doesMatchSearch;

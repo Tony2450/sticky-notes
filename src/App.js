@@ -36,10 +36,21 @@ const App = () => {
     setNotes([...notes,newNote]);
   }
 
+  const onType = (noteByID, updatedKey, updatedValue) => {
+    setNotes(notes.map(note => {
+      if (note.id === noteByID){
+        note[updatedKey] = updatedValue;
+        return note;
+      } else {
+        return note;
+      }
+    }))
+  }
+
   return (
     < div className="app" >
       <Header searchText={searchText} setSearchText={setSearchText} addNote={addNote}/>
-      <NotesList notes={notes} removeNote={removeNote} searchText={searchText}/>
+      <NotesList notes={notes} removeNote={removeNote} searchText={searchText} onType={onType}/>
     </div >
   )
 };
