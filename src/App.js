@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import { useState } from "react";
 import Header from "./Header";
 import NotesList from "./Noteslist";
@@ -34,7 +34,7 @@ const App = () => {
     doesMatchSearch: true,
     };
     setNotes([...notes,newNote]);
-  }
+  };
 
   const onType = (noteByID, updatedKey, updatedValue) => {
     setNotes(notes.map(note => {
@@ -45,7 +45,21 @@ const App = () => {
         return note;
       }
     }))
-  }
+  };
+
+  useEffect(()=>{
+    const stateString = JSON.stringify(notes);
+    localStorage.setItem("stateString", stateString)
+  },[notes])
+
+  useLayoutEffect(()=>{
+    const stateString = localStorage.getItem("stateString")
+  if (stateString){
+    const savedState = JSON.parse(stateString);
+    setNotes(savedState);
+  }else{
+    return
+  }},[])
 
   return (
     < div className="app" >
