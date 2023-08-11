@@ -49,11 +49,11 @@ const App = () => {
 
   useEffect(() => {
     const stateStringNotes = JSON.stringify(notes);
-    localStorage.setItem("stateString", stateStringNotes)
+    localStorage.setItem("stateStringNotes", stateStringNotes)
   }, [notes])
 
   useLayoutEffect(() => {
-    const stateStringNotes = localStorage.getItem("stateString")
+    const stateStringNotes = localStorage.getItem("stateStringNotes")
     if (stateStringNotes) {
       const savedState = JSON.parse(stateStringNotes);
       setNotes(savedState);
