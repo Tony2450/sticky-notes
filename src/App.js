@@ -48,14 +48,14 @@ const App = () => {
   };
 
   useEffect(() => {
-    const stateString = JSON.stringify(notes);
-    localStorage.setItem("stateString", stateString)
+    const stateStringNotes = JSON.stringify(notes);
+    localStorage.setItem("stateString", stateStringNotes)
   }, [notes])
 
   useLayoutEffect(() => {
-    const stateString = localStorage.getItem("stateString")
-    if (stateString) {
-      const savedState = JSON.parse(stateString);
+    const stateStringNotes = localStorage.getItem("stateString")
+    if (stateStringNotes) {
+      const savedState = JSON.parse(stateStringNotes);
       setNotes(savedState);
     } else {
       return
